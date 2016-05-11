@@ -41,22 +41,6 @@ test('localizr', function (t) {
     });
 
 
-    t.test('invalid props', function (t) {
-        var options;
-
-        options = {
-            src: path.join(__dirname, 'fixtures', 'templates', 'index.dust'),
-            props: undefined
-        };
-
-        t.throws(function () {
-            localizr.createReadStream(options);
-        });
-
-        t.end();
-    });
-
-
     t.test('invalid options', function (t) {
         t.throws(function () {
             localizr.createReadStream();

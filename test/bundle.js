@@ -68,15 +68,21 @@ test('bundle', function (t) {
         });
     });
 
-
-    t.test('load err - no file', function (t) {
-        bundle.create('').load(function (err, bun) {
-            t.ok(err);
+    t.test('load err - no file (w/src)', function (t) {
+        bundle.create('', 'parentFile.dust').load(function (err, bun) {
+            t.equal(err.message, 'Content missing for parentFile.dust');
             t.notOk(bun);
             t.end();
         });
     });
 
+    t.test('load err - no file (w/o src)', function (t) {
+        bundle.create('').load(function (err, bun) {
+            t.equal(err.message, 'Content missing for template');
+            t.notOk(bun);
+            t.end();
+        });
+    });
 
     t.test('get', function (t) {
         var file = path.join(__dirname, 'fixtures', 'content', 'index.properties');
@@ -127,7 +133,6 @@ test('bundle', function (t) {
             t.end();
         });
     });
-
 
     t.test('get nothing', function (t) {
         var file = path.join(__dirname, 'fixtures', 'content', 'index.properties');
