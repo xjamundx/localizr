@@ -29,7 +29,6 @@ exports.createReadStream = function (options) {
     options = options || {};
 
     assert.ok(options.src, 'No input file specified.');
-    assert.ok(options.props, 'No properties file specified.');
 
     handle = handler.create(maybeAddMetadata(bundle.create(options.props), options.enableMetadata));
     src = fs.createReadStream(options.src);
